@@ -167,6 +167,7 @@ zzz/
 temp/
 tmp/
 experiments/
+eda.ipynb
 
 # Large model files
 *.onnx
@@ -177,5 +178,4 @@ experiments/
 # Custom project ignores
 *.gz
 
-# Databricks notebooks
-notebooks/05_distributed_computing/
+
