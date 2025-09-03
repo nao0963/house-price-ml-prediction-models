@@ -1,0 +1,25 @@
+{
+  "input_path": "data/raw/raw.csv",
+  "outdir": "data/split",
+  "target": "SalePrice",
+  "test_size": 0.2,
+  "random_state": 42,
+  "n_bins_used": 10,
+  "train_size": 1168,
+  "test_size_abs": 292,
+  "stratified": true,
+  "target_summary": {
+    "train_count": 1168,
+    "train_mean": 180976.886130137,
+    "train_std": 79285.16550182083,
+    "train_min": 34900.0,
+    "train_median": 163000.0,
+    "train_max": 755000.0,
+    "test_count": 292,
+    "test_mean": 180698.43493150684,
+    "test_std": 80205.29493155428,
+    "test_min": 35311.0,
+    "test_median": 163495.0,
+    "test_max": 625000.0
+  }
+}
