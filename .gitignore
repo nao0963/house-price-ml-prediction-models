@@ -122,25 +122,28 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# Machine Learning specific
-*.pkl
-*.joblib
+# Machine Learning specific - Large model files only
 *.h5
 *.hdf5
-*.model
-models/
-results/*.png
-results/*.jpg
-results/*.jpeg
-results/*.pdf
+*.onnx
+*.pb
+*.pth
+*.pt
 
-# Data files (keep structure but ignore large files)
+# Keep important model artifacts for portfolio
+# models/ - commented out to allow tracking final models
+# results/ - commented out to allow tracking key results
+
+# Data files
 data/raw/*.csv
 data/raw/*.json
 data/raw/*.parquet
-data/processed/*.csv
-data/processed/*.pkl
-data/processed/*.parquet
+
+
+# Only ignore very large intermediate files
+data/raw/*.gz
+data/raw/*.zip
+data/raw/*.tar.gz
 
 # Notebook outputs and temporary files
 *.tmp
@@ -163,17 +166,11 @@ ehthumbs.db
 Thumbs.db
 
 # Temporary experiment files
-zzz/
 temp/
 tmp/
 experiments/
-eda.ipynb
-
-# Large model files
-*.onnx
-*.pb
-*.pth
-*.pt
+*.tmp.*
+*.temp.*
 
 # Custom project ignores
 *.gz
