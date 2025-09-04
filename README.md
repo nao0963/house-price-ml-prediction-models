@@ -9,9 +9,10 @@ An end-to-end machine learning project that develops and compares multiple regre
 **Data**: Ames Housing Dataset (1,460 properties with 79 features)
 
 **Methodology**:
-- Comprehensive data cleaning and feature engineering (Basic vs Advanced)
+- Comprehensive data preparation and feature engineering (Basic vs Advanced)
+- Stratified holdout split and CV-safe pipeline to prevent data leakage
 - Multiple model comparison (Linear, Ridge, Random Forest)
-- Hyperparameter tuning and cross-validation
+- Hyperparameter tuning and cross-validation with consistent metrics validation
 - Business impact analysis and production readiness assessment
 
 ## 🔧 Technology Stack
@@ -56,7 +57,10 @@ house-price-ml-prediction-models/
 ### 1. Data Preparation
 ![Data Pipeline](notebooks/01_data_preparation/)
 
-Comprehensive data cleaning with domain knowledge integration and statistical preprocessing
+The data preparation process is divided into two separate stages:
+
+- **Domain-Specific Cleaning** (Outside Pipeline - 01_data_preparation/): Manual data exploration and domain knowledge-based cleaning implemented in notebooks for data quality issues
+- **Statistical Pipeline Processing** (Inside Pipeline): Automated CV-safe preprocessing including smart imputation, IQR-based outlier handling, and feature engineering integrated within the modeling pipeline
 
 ### 2. Feature Engineering Comparison
 ![Feature Engineering](notebooks/02_feature_engineering/)
@@ -64,6 +68,8 @@ Comprehensive data cleaning with domain knowledge integration and statistical pr
 - **Basic Features**: Essential derived features (TotalSF, HouseAge)
 - **Advanced Features**: 24 engineered features including interactions and ratios
 - **Result**: Basic features achieved superior performance through reduced overfitting
+
+*Note: Actual feature engineering code is implemented in `scripts/pipelines.py` and `scripts/feature_builders.py`. The notebooks in 02_feature_engineering/ are for understanding and exploring the feature engineering process.*
 
 ### 3. Model Selection Results
 ![Model Comparison](results/images/model_comparison.png)
@@ -150,6 +156,12 @@ Stage 1: Domain Cleaning → Stage 2: Statistical Pipeline → Model Training
 - **Smart Imputation**: Neighborhood-based strategies for missing values
 - **Statistical Outlier Handling**: IQR-based winsorization
 - **Enhanced Feature Engineering**: [See detailed pipeline documentation](scripts/pipeline_flow_documentation.md)
+
+### Data Leakage Prevention & Model Validation
+- **Stratified Holdout Split**: Test data set aside using stratified sampling to ensure representative price distribution
+- **CV-Safe Pipeline**: All preprocessing steps (imputation, scaling, feature engineering) applied within cross-validation folds
+- **No Future Information**: Statistical parameters learned from training data only during validation
+- **High Confidence Metrics**: Consistent CV/holdout performance validates production readiness (+0.4% difference)
 
 ### Model Robustness
 - Cross-validation consistency validates production readiness
